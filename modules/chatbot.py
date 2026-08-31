@@ -5,7 +5,7 @@ from modules.vector_store import search_similar_chunks
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 def answer_query_with_context(query, index, chunks):
-    """Use FAISS + Llama to answer based on document content."""
+    """Use FAISS + GPT-OSS-120b to answer based on document content."""
     context_chunks = search_similar_chunks(query, index, chunks)
     context = "\n\n".join(context_chunks)
 
@@ -21,7 +21,7 @@ Answer (in 2-3 concise sentences):
 """
 
     response = client.chat.completions.create(
-        model="llama-3.1-8b-instant",
+        model="openai/gpt-oss-120b",
         messages=[{"role": "user", "content": prompt}]
     )
 

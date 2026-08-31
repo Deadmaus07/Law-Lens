@@ -112,7 +112,7 @@ def _score_batch_with_retry(paragraphs: List[str]) -> List[int]:
     for attempt in range(MAX_RETRIES):
         try:
             response = client.chat.completions.create(
-                model="llama-3.1-8b-instant",
+                model="openai/gpt-oss-120b",
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.1,
                 max_tokens=100

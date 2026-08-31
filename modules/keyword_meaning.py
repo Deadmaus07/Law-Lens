@@ -11,7 +11,7 @@ except Exception as e:
 
 def get_keywords_meaning_smart(keywords: list[str]) -> dict:
     """
-    Use Groq API (Llama) to decide which keywords need explanation and explain them briefly.
+    Use Groq API (GPT-OSS-120b) to decide which keywords need explanation and explain them briefly.
     Returns a dictionary: {keyword: meaning or "No explanation needed"}
     """
     if not client:
@@ -43,7 +43,7 @@ def get_keywords_meaning_smart(keywords: list[str]) -> dict:
 
     try:
         response = client.chat.completions.create(
-            model="llama-3.1-8b-instant",  # Recommended model for JSON tasks
+            model="openai/gpt-oss-120b",  # Recommended model for JSON tasks
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt},
